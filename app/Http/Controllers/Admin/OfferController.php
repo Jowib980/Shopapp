@@ -58,5 +58,6 @@ class OfferController extends Controller
 
         return redirect()->back()->with('success', 'Offer assigned successfully!');
     }
+    
 }
 

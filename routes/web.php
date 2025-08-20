@@ -11,13 +11,12 @@ Route::get('/', function () {
 
 
 Route::get('/shopify/install', [ShopifyAuthController::class, 'install']);
-Route::get('/shopify/callback', [ShopifyAuthController::class, 'callback']);
+Route::get('/shopify/callback', [ShopifyAuthController::class, 'callback'])->name('shopify.callback');
 
-Route::middleware(['shopify.cors'])
+Route::prefix('shopify/proxy')
     ->group(function () {
         Route::get('/products', [ShopifyProxyController::class, 'getProducts']);
     });
-
 
 
 Route::prefix('admin')->group(function () {
