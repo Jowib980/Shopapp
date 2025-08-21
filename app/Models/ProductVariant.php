@@ -24,6 +24,10 @@ class ProductVariant extends Model
         'taxable',
     ];
 
+    protected $casts = [
+        'shopify_id' => 'string',
+    ];
+
     public function product()
     {
         return $this->belongsTo(Product::class);
