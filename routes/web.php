@@ -16,11 +16,5 @@ Route::get('/shopify/callback', [ShopifyAuthController::class, 'callback'])->nam
 Route::prefix('shopify/proxy')
     ->group(function () {
         Route::get('/products', [ShopifyProxyController::class, 'getProducts']);
+        Route::get('/offer-products', [OfferController::class, 'offeredProducts']);
     });
-
-
-// Route::prefix('admin')->group(function () {
-//     Route::resource('offers', OfferController::class);
-//     Route::get('products/{id}/offers', [OfferController::class, 'editProductOffer']);
-//     Route::post('products/{id}/offers', [OfferController::class, 'updateProductOffer']);
-// });
