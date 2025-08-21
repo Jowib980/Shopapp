@@ -19,6 +19,10 @@ class ProductImage extends Model
         'alt',
     ];
 
+    protected $casts = [
+        'shopify_id' => 'string',
+    ];
+
     public function product()
     {
         return $this->belongsTo(Product::class);

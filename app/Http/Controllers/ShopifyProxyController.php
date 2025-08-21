@@ -31,7 +31,7 @@ class ShopifyProxyController extends Controller
         foreach ($productData['products'] as $productData) {
 
             $product = Products::updateOrCreate(
-                ['shopify_id' => $productData['id']],
+                ['shopify_id' => (string)$productData['id']],
                 [
                     'title' => $productData['title'],
                     'body_html' => $productData['body_html'],
@@ -46,7 +46,7 @@ class ShopifyProxyController extends Controller
 
             foreach ($productData['variants'] as $variantData) {
                 $product->variants()->updateOrCreate(
-                    ['shopify_id' => $variantData['id']],
+                    ['shopify_id' => (string)$variantData['id']],
                     [
                         'product_id' => $product->id,
                         'title' => $variantData['title'],
@@ -78,7 +78,7 @@ class ShopifyProxyController extends Controller
 
             foreach ($productData['images'] ?? [] as $imageData) {
                 $product->images()->updateOrCreate(
-                    ['shopify_id' => $imageData['id']],
+                    ['shopify_id' => (string)$imageData['id']],
                     [
                         'product_id' => $product->id,
                         'src' => $imageData['src'],

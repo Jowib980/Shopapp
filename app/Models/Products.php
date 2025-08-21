@@ -21,6 +21,10 @@ class Products extends Model
         'status',
     ];
 
+    protected $casts = [
+        'shopify_id' => 'string',
+    ];
+
     /**
      * Product has many variants
      */
