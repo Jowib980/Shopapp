@@ -19,8 +19,8 @@ Route::prefix('shopify/proxy')
     });
 
 
-Route::prefix('admin')->group(function () {
-    Route::resource('offers', OfferController::class);
-    Route::get('products/{id}/offers', [OfferController::class, 'editProductOffer']);
-    Route::post('products/{id}/offers', [OfferController::class, 'updateProductOffer']);
-});
+// Route::prefix('admin')->group(function () {
+//     Route::resource('offers', OfferController::class);
+//     Route::get('products/{id}/offers', [OfferController::class, 'editProductOffer']);
+//     Route::post('products/{id}/offers', [OfferController::class, 'updateProductOffer']);
+// });

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Offers extends Model
 {
-    protected $fillable = ['name', 'type', 'parameters'];
+    protected $fillable = ['name', 'type', 'buy_quantity', 'free_quantity', 'discount_percent'];
 
     protected $casts = [
         'parameters' => 'array'
@@ -14,6 +14,6 @@ class Offers extends Model
 
     public function products()
     {
-        return $this->hasMany(ProductOffers::class);
+        return $this->belongsToMany(Products::class, 'product_offers', 'offer_id', 'product_id');
     }
 }

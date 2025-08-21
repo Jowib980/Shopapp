@@ -11,7 +11,7 @@ class ShopifyAuthController extends Controller
     public function install(Request $request)
 	{
 	    $shop = $request->get('shop'); // must be jowib-emporium.myshopify.com
-	    $apiKey = config('services.shopify.api_key');
+	    $apiKey = config('services.shopify.client_id');
 	    $scopes = "read_products,write_products";
 	    $redirectUri = route('shopify.callback'); // https://emporium.cardiacambulance.com/shopify/callback
 
@@ -40,8 +40,8 @@ class ShopifyAuthController extends Controller
 
         // Exchange code for permanent token
         $response = Http::asForm()->post("https://{$shop}/admin/oauth/access_token", [
-            'client_id' => config('services.shopify.api_key'),
-            'client_secret' => config('services.shopify.api_secret'),
+            'client_id' => config('services.shopify.client_id'),
+            'client_secret' => config('services.shopify.client_secret'),
             'code' => $code,
         ]);
 

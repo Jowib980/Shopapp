@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_offers', function (Blueprint $table) {
+        Schema::create('offers', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('shopify_product_id'); // Shopify product ID
-            $table->foreignId('offer_id')->constrained('offers')->onDelete('cascade');
+            $table->string('name');
+            $table->enum('type', ['free', 'discount']);
+            $table->integer('buy_quantity');
+            $table->integer('free_quantity')->nullable();     // only for free offers
+            $table->integer('discount_percent')->nullable();  // only for discount offers
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_offers');
+        Schema::dropIfExists('offers');
     }
 };

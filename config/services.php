@@ -39,6 +39,8 @@ return [
         'shop' => env('SHOPIFY_SHOP_DOMAIN'),
         'api_key' => env('SHOPIFY_API_KEY'),
         'api_secret' => env('SHOPIFY_API_SECRET'),
+        'client_id' => env('SHOPIFY_CLIENT_ID'),
+        'client_secret' => env('SHOPIFY_CLIENT_SECRET'),
         'access_token' => env('SHOPIFY_ACCESS_TOKEN'),
     ],
 

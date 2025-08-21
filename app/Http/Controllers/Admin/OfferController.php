@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Offers;
-use App\Models\ProductOffers;
+// use App\Models\ProductOffers;
 use Illuminate\Http\Request;
 
 class OfferController extends Controller
@@ -37,27 +37,27 @@ class OfferController extends Controller
         return redirect()->route('offers.index')->with('success', 'Offer created');
     }
 
-    public function editProductOffer($productId)
-    {
-        $offers = Offers::all();
-        $productOffer = ProductOffers::where('shopify_product_id', $productId)->first();
+    // public function editProductOffer($productId)
+    // {
+    //     $offers = Offers::all();
+    //     $productOffer = ProductOffers::where('shopify_product_id', $productId)->first();
 
-        return view('admin.offers.edit_product_offer', compact('offers', 'productId', 'productOffer'));
-    }
+    //     return view('admin.offers.edit_product_offer', compact('offers', 'productId', 'productOffer'));
+    // }
 
-    public function updateProductOffer(Request $request, $productId)
-    {
-        $request->validate([
-            'offer_id' => 'required|exists:offers,id'
-        ]);
+    // public function updateProductOffer(Request $request, $productId)
+    // {
+    //     $request->validate([
+    //         'offer_id' => 'required|exists:offers,id'
+    //     ]);
 
-        ProductOffers::updateOrCreate(
-            ['shopify_product_id' => $productId],
-            ['offer_id' => $request->offer_id]
-        );
+    //     ProductOffers::updateOrCreate(
+    //         ['shopify_product_id' => $productId],
+    //         ['offer_id' => $request->offer_id]
+    //     );
 
-        return redirect()->back()->with('success', 'Offer assigned successfully!');
-    }
+    //     return redirect()->back()->with('success', 'Offer assigned successfully!');
+    // }
     
 }
 
