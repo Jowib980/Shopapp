@@ -8,35 +8,37 @@ return new class extends Migration
 {
     public function up(): void
     {
-        // Update product_id in product_variants
+
+        // Update shopify_id in product_options
+        Schema::table('product', function (Blueprint $table) {
+            $table->unsignedBigInteger('shopify_id')->change();
+        });
+
+        // Update shopify_id in product_variants
         Schema::table('product_variants', function (Blueprint $table) {
-            $table->unsignedBigInteger('product_id')->change();
+            $table->unsignedBigInteger('shopify_id')->change();
         });
 
-        // Update product_id in product_options
-        Schema::table('product_options', function (Blueprint $table) {
-            $table->unsignedBigInteger('product_id')->change();
-        });
-
-        // Update product_id in product_images
+        // Update shopify_id in product_images
         Schema::table('product_images', function (Blueprint $table) {
-            $table->unsignedBigInteger('product_id')->change();
+            $table->unsignedBigInteger('shopify_id')->change();
         });
     }
 
     public function down(): void
     {
-        // Rollback to normal bigInteger if needed
-        Schema::table('product_variants', function (Blueprint $table) {
-            $table->bigInteger('product_id')->change();
+        
+        Schema::table('product', function (Blueprint $table) {
+            $table->bigInteger('shopify_id')->change();
         });
 
-        Schema::table('product_options', function (Blueprint $table) {
-            $table->bigInteger('product_id')->change();
+        // Rollback to normal bigInteger if needed
+        Schema::table('product_variants', function (Blueprint $table) {
+            $table->bigInteger('shopify_id')->change();
         });
 
         Schema::table('product_images', function (Blueprint $table) {
-            $table->bigInteger('product_id')->change();
+            $table->bigInteger('shopify_id')->change();
         });
     }
 };
