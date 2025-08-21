@@ -10,7 +10,7 @@ return new class extends Migration
     {
 
         // Update shopify_id in product_options
-        Schema::table('product', function (Blueprint $table) {
+        Schema::table('products', function (Blueprint $table) {
             $table->unsignedBigInteger('shopify_id')->change();
         });
 
@@ -27,8 +27,8 @@ return new class extends Migration
 
     public function down(): void
     {
-        
-        Schema::table('product', function (Blueprint $table) {
+
+        Schema::table('products', function (Blueprint $table) {
             $table->bigInteger('shopify_id')->change();
         });
 
