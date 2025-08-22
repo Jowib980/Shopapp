@@ -20,24 +20,20 @@ class OfferController extends Controller
 
     public function updateCart(Request $request) 
     {
-        $productId = 7855825813585; // or $request->product_id
-        $quantity  = 2; // or $request->quantity
+        
+        $productId = (string) $request->product_id;
+        $quantity = $request->quantity;
 
-        // Get product by Shopify ID
-        $product = Products::where('shopify_id', $productId)->first();
-
-        if (!$product) {
+        $productVariant = ProductVariant::where('shopify_id', $productId)->first();
+        if (!$productVariant) {
             return response()->json(['error' => 'Product not found'], 404);
         }
-
-        $product_id = $product->id;
-        $productVariant = ProductVariant::where('product_id', $product_id)->first();
 
         $product_original_price = $productVariant->price;
 
         // Get discount/offer for this product
         $productOffer = ProductOffers::with('offer')
-            ->where('product_id', $product_id)
+            ->where('product_id', $productVariant->product_id)
             ->first();
 
         $freeQty = 0;
@@ -66,7 +62,7 @@ class OfferController extends Controller
         $totalPrice = $discountedPrice * $quantity;
 
         return response()->json([
-            'product_id' => $product_id,
+            'product_id' => $productId,
             'quantity' => $quantity,
             'free_qty' => $freeQty,
             'total_qty' => $totalQty,
