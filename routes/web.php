@@ -17,4 +17,5 @@ Route::prefix('shopify/proxy')
     ->group(function () {
         Route::get('/products', [ShopifyProxyController::class, 'getProducts']);
         Route::get('/offer-products', [OfferController::class, 'offeredProducts']);
+        Route::get('/update-cart', [OfferController::class, 'updateCart']);
     });
